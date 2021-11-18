@@ -4,35 +4,15 @@ import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {SCREEN} from '~/constants/theme';
 import styles from './styles';
 
-function Container({
-  style,
-  scroll,
-  keyboard,
-  animated,
-  children,
-  isMenuActive = false,
-  contentContainerStyle,
-  ...props
-}) {
+/**
+ * Assign the project to an employee.
+ * @param {import('./c').IContainerViewModel} props - The employee who is responsible for the project.
+ */
+function Container({style, scroll, children, contentContainerStyle, ...props}) {
   const {top} = useSafeAreaInsets();
 
   if (scroll) {
-    return animated ? (
-      <Animated.ScrollView
-        bounce={false}
-        scrollEnabled={!isMenuActive}
-        showsVerticalScrollIndicator={false}
-        style={[styles.scrollView, style]}
-        keyboardShouldPersistTaps="handled"
-        overScrollMode="never"
-        contentContainerStyle={[
-          styles.contentContainerStyle,
-          contentContainerStyle,
-        ]}
-        {...props}>
-        {children}
-      </Animated.ScrollView>
-    ) : (
+    return (
       <ScrollView
         bounce={false}
         showsVerticalScrollIndicator={false}
@@ -55,16 +35,6 @@ function Container({
     );
   }
 
-  if (animated) {
-    return (
-      <Animated.View
-        style={[styles.container, style]}
-        pointerEvents={isMenuActive ? 'none' : 'auto'}
-        {...props}>
-        {children}
-      </Animated.View>
-    );
-  }
   return (
     <View style={[styles.container, style]} {...props}>
       {children}

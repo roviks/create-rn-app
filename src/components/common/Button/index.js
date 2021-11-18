@@ -1,9 +1,13 @@
 import React, {useState} from 'react';
-import {View, TouchableOpacity, ActivityIndicator} from 'react-native';
+import {View, ActivityIndicator, TouchableOpacity} from 'react-native';
 import {COLORS} from '~/constants/theme.js';
 import {Text} from '~/components/common';
 import styles from './styles.js';
 
+/**
+ * Assign the project to an employee.
+ * @param {import('./c').IButtonViewModel} props - The employee who is responsible for the project.
+ */
 export default function Button({
   title,
   primary,
@@ -19,7 +23,7 @@ export default function Button({
   borderColor = 'rgba(255, 255, 255, 0)',
   borderSize = 0,
   color = COLORS.white,
-  backgroundColor = COLORS.main,
+  backgroundColor = COLORS.primary,
   style,
   ...props
 }) {
@@ -53,7 +57,7 @@ export default function Button({
       return COLORS.black;
     }
     if (danger) {
-      return COLORS.danger;
+      return COLORS.white;
     }
     if (transparent) {
       return COLORS.black;

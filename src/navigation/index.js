@@ -47,7 +47,7 @@ const AppNavContainer = () => {
     getUser();
   }, [authState.isLoggedIn]);
 
-  if (isInternetReachable === false) {
+  if (isInternetReachable) {
     return (
       <View>
         <Text>GG</Text>
@@ -57,7 +57,7 @@ const AppNavContainer = () => {
     return (
       <NavigationContainer>
         <View style={{flex: 1, backgroundColor: COLORS.backgroundColor}}>
-          {!isAuthenticated ? null : <AuthNavigator />}
+          {isAuthenticated ? null : <AuthNavigator />}
         </View>
       </NavigationContainer>
     );

@@ -7,9 +7,7 @@ export default StyleSheet.create({
   },
   scrollView: {
     backgroundColor: COLORS.background,
-    minHeight: SCREEN.height,
-    paddingHorizontal: 0,
-    // paddingTop: PADDING,
+    paddingHorizontal: PADDING,
   },
   contentContainerStyle: {
     flexGrow: 1,

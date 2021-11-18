@@ -1,4 +1,4 @@
-import validateCreditCard from './validateCreditCard';
+// import validateCreditCard from './validateCreditCard';
 import validateEmail from './validateEmail';
 import validatePhoneNumber from './validatePhoneNumber';
 
@@ -193,27 +193,27 @@ export default ({setForm, form, name, value}) => {
         }));
       }
       break;
-    case 'creditCardNumber':
-      if (!validateCreditCard(value)) {
-        setForm(prev => ({
-          ...prev,
-          [name]: {
-            value,
-            error: '',
-            warning: 'Некорректный номер кредитной карточки',
-          },
-        }));
-      } else {
-        setForm(prev => ({
-          ...prev,
-          [name]: {
-            value,
-            error: null,
-            warning: '',
-          },
-        }));
-      }
-      break;
+    // case 'creditCardNumber':
+    //   if (!validateCreditCard(value)) {
+    //     setForm(prev => ({
+    //       ...prev,
+    //       [name]: {
+    //         value,
+    //         error: '',
+    //         warning: 'Некорректный номер кредитной карточки',
+    //       },
+    //     }));
+    //   } else {
+    //     setForm(prev => ({
+    //       ...prev,
+    //       [name]: {
+    //         value,
+    //         error: null,
+    //         warning: '',
+    //       },
+    //     }));
+    //   }
+    //   break;
     case 'email':
       if (!validateEmail(value)) {
         setForm(prev => ({

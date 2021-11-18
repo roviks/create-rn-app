@@ -16,5 +16,6 @@
       "~/screens/*": ["src/screens/*"],
       "~/utils/*": ["src/utils/*"]
     }
-  }
+  },
+  "exclude": ["node_modules"]
 }

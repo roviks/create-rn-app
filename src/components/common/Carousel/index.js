@@ -1,7 +1,6 @@
 import React from 'react';
-import {View, Image, Animated, InteractionManager} from 'react-native';
+import {View, Image, Animated, InteractionManager, Text} from 'react-native';
 import {PADDING, SCREEN} from '~/constants/theme';
-import {Text} from '..';
 
 import styles from './styles';
 

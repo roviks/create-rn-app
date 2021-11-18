@@ -19,4 +19,5 @@ export const SUPPORT = 'Support';
 
 export const GET_COIN = 'Get Coin';
 export const PLAYER = 'Player';
-export const DRAWER = 'Drawer';
+export const LOGIN = 'Login';
+export const REGISTER = 'Register';
