@@ -1,5 +1,13 @@
 import React, {useContext, useState} from 'react';
-import {View, TouchableOpacity, Text, TextInput} from 'react-native';
+import {
+  View,
+  TouchableOpacity,
+  Text,
+  TextInput,
+  Dimensions,
+  Keyboard,
+  Linking,
+} from 'react-native';
 import {Button, Container, Input} from '~/components/common';
 import mainStyles from '~/components/mainStyles';
 import styles from './styles';
@@ -9,16 +17,25 @@ import loginUser from '~/context/actions/auth/loginUser';
 import {GlobalContext} from '~/context/Provider';
 import initForm from '~/helpers/initForm';
 import Row from '~/components/common/Row';
-import {COLORS} from '~/constants/theme';
+import {COLORS, SCREEN} from '~/constants/theme';
 import {EyeCloseIcon, EyeOpenIcon} from '~/assets/svg';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import TextInputt from '~/components/common/TextInputt';
 
 const Login = ({navigation}) => {
   const [isSecureEntry, setIsSecureEntry] = useState(true);
   const [form, setForm] = useState(initForm('number', 'password'));
 
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [password, setPassword] = useState('');
+
+  const [scrollPageY, setScrollPageY] = useState(0);
+  const [paddingBottom, setPaddingBottom] = useState(0);
+  const inputRef = React.useRef();
+
   const [textInput1, setTextInput1] = useState(null);
   const [textInput2, setTextInput2] = useState(null);
-
+  const {top} = useSafeAreaInsets();
   const {
     authDispatch,
     authState: {error, loading},
@@ -39,7 +56,18 @@ const Login = ({navigation}) => {
       scroll
       contentContainerStyle={{
         justifyContent: 'space-between',
+      }}
+      onScroll={e => {
+        setScrollPageY(e.nativeEvent.contentOffset.y);
       }}>
+      {/* <View
+        style={{
+          position: 'absolute',
+          backgroundColor: '#f00',
+          width: '100%',
+          height: SCREEN.height - 225.81817626953125 - top,
+        }}
+      /> */}
       <View>
         <View>
           <Text style={[styles.title]}>
@@ -57,10 +85,11 @@ const Login = ({navigation}) => {
                 <EyeOpenIcon fill="#FFF" />
               </View>
               <View style={{flex: 1, marginLeft: 20}}>
-                <Text style={styles.label}>Email</Text>
+                <Text style={styles.label}>Phone number</Text>
                 <TextInput
-                  keyboardType="email-address"
+                  keyboardType="default"
                   autoCapitalize="none"
+                  value={phoneNumber}
                   style={styles.input}
                 />
               </View>
@@ -75,10 +104,10 @@ const Login = ({navigation}) => {
               <View style={{flex: 1, marginLeft: 20}}>
                 <Text style={styles.label}>Password</Text>
                 <Row>
-                  <TextInput
-                    secureTextEntry={isSecureEntry}
-                    autoCapitalize="none"
-                    style={styles.input}
+                  <TextInputt
+                    inpRef={inputRef}
+                    scrollPageY={scrollPageY}
+                    value={password}
                   />
                   <TouchableOpacity
                     onPress={() => setIsSecureEntry(prev => !prev)}>
@@ -97,7 +126,15 @@ const Login = ({navigation}) => {
       </View>
       <View style={{marginBottom: 0}}>
         <View>
-          <Button title="Login" />
+          <Button
+            title="Login"
+            onPress={async () => {
+              await Linking.openURL(
+                `https://t.me/aemuzbot?start=${'generatedId'}`,
+              );
+              console.log('SDFSDF');
+            }}
+          />
         </View>
         <View style={{marginTop: 32, paddingBottom: 30}}>
           <Text style={[styles.footerText]}>

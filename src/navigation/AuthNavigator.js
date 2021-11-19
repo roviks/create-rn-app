@@ -17,6 +17,9 @@ const AuthNavigator = ({navigation}) => (
   <AuthStack.Navigator
     initialRouteName={LOGIN}
     screenOptions={{
+      cardStyle: {
+        backgroundColor: '#f00',
+      },
       headerShown: false,
       cardStyleInterpolator: forFade,
     }}>

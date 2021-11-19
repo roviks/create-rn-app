@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
-import {View, ActivityIndicator, TouchableOpacity} from 'react-native';
+import {View, ActivityIndicator, TouchableOpacity, Text} from 'react-native';
 import {COLORS} from '~/constants/theme.js';
-import {Text} from '~/components/common';
 import styles from './styles.js';
 
 /**
@@ -88,7 +87,7 @@ export default function Button({
       {...props}>
       <View style={[styles.loaderSection]}>
         {loading && <ActivityIndicator color={getTextColor()} />}
-        {icon && (
+        {icon && typeof icon === 'function' && (
           <View
             style={[
               styles.icon,
